@@ -76,4 +76,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Copy files to the production website with the AWS CLI
         run: |
-          aws s3 sync ./build s3://bhanna1693-portfolio
+          aws s3 sync ./build s3://bhanna-portfolio
