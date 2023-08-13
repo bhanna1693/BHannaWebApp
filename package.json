@@ -2,7 +2,6 @@
   "name": "web-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bhanna1693.github.io/my-portfolio/",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@tanstack/react-query": "^4.32.5",
