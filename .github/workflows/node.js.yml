@@ -3,7 +3,7 @@ name: Deploy web-app site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -39,10 +39,6 @@ jobs:
         run: npm ci
       - name: Build with react-scripts
         run: npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ,/build
 
   # Deployment job
   deploy:
