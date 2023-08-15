@@ -5,5 +5,5 @@ export const environment: {
 } = {
     isProd: process.env.NODE_ENV! === "production",
     BASE_URL: process.env.REACT_APP_BASE_URL!,
-    MY_COOKIE: process.env.REACT_APP_AUTH_COOKIE!,
+    MY_COOKIE: process.env.REACT_APP_AUTH_COOKIE ?? "bhannaAuthToken",
 }
