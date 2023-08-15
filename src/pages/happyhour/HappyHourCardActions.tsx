@@ -70,7 +70,7 @@ const HappyHourCardActions: FunctionComponent<{ b: CompositeBusinessDto }> = ({b
                 </button>
             case SpecialCheckStatus.INITIAL:
                 return <div>
-                    <h1>We are aware of this business but have not checked for specials.</h1>
+                    <h3>We are aware of this business but have not checked for specials.</h3>
                     <CheckForSpecialsButtonAction isLoading={isUpdating}
                                                   businessUrl={b.business.website}
                                                   onClick={(businessUrl) => handleUpdateBusiness(businessUrl, b.business!)}/>
