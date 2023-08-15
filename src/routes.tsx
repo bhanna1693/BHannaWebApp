@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "pokemon",
-                element: <PrivateRoute children={<PokemonPage/>}/>
+                element: <PrivateRoute children={<PageLayout children={<PokemonPage/>} />}/>
             },
             {
                 path: "auth",
