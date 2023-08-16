@@ -6,16 +6,16 @@ export const HomePage = () => {
             <div className="text-center">
                 <h1>Welcome to my website!</h1>
 
-                <h2>I build this site using a variety of languages/frameworks/technologies in order
+                <h2>I built this site using a variety of languages/frameworks/services in order
                     to keep up with the latest changes in technology.</h2>
 
             </div>
             <div>
                 <div>
                     <h3 className="tooltip" data-tip="Go to Frontend Github repository">
-                        <a className="btn btn-ghost" href="https://github.com/bhanna1693/BHannaWebApp" target="_blank" rel="noreferrer">
+                        <a className="flex items-center" href="https://github.com/bhanna1693/BHannaWebApp" target="_blank" rel="noreferrer">
                             Front End:
-                            <ArrowTopRightOnSquareIcon className={"h-5 w-5"} />
+                            <ArrowTopRightOnSquareIcon className={"h-5 w-5 ml-4"} />
                         </a>
                     </h3>
                     <ul>
@@ -29,9 +29,9 @@ export const HomePage = () => {
 
                 <div>
                     <h3 className="tooltip" data-tip="Go to Backend Github repository">
-                        <a className="btn btn-ghost" href="https://github.com/bhanna1693/happyhour" target="_blank" rel="noreferrer">
+                        <a className="flex items-center" href="https://github.com/bhanna1693/happyhour" target="_blank" rel="noreferrer">
                             Back End:
-                            <ArrowTopRightOnSquareIcon className={"h-5 w-5"} />
+                            <ArrowTopRightOnSquareIcon className={"h-5 w-5 ml-4"} />
                         </a>
                     </h3>
                     <ul>

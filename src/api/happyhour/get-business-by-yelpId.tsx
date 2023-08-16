@@ -1,7 +1,7 @@
 import {useQuery} from "@tanstack/react-query";
 import {Business, SpecialCheckStatus} from "../../models/business";
-import apiService from "../../lib/api/api";
-import useAccessToken from "../../lib/api/useAccessToken";
+import apiService from "../api";
+import useAccessToken from "../useAccessToken";
 
 const fetchBusinessByYelpId = async (yelpId: string, includeSpecials: boolean, token: string): Promise<Business> => {
     return await apiService.get<Business>(`/business/${yelpId}`, {

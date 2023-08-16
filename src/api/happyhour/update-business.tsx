@@ -1,9 +1,9 @@
 import {QueryClient, useMutation, useQueryClient} from "@tanstack/react-query";
 import {Business} from "../../models/business";
-import apiService from "../../lib/api/api";
+import apiService from "../api";
 import {CompositeBusinessDto} from "../../models/composite-business-dto";
 import {UpdateBusinessRequest} from "../../schemas/update-business-request-schema";
-import useAccessToken from "../../lib/api/useAccessToken";
+import useAccessToken from "../useAccessToken";
 
 const updateBusiness = async (req: UpdateBusinessRequest, token: string): Promise<Business> => {
     return await apiService.post<UpdateBusinessRequest, Business>(`/business/${req.businessId}`, req, {

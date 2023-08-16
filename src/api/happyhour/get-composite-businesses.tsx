@@ -1,8 +1,8 @@
 import {useQuery} from "@tanstack/react-query";
-import apiService from "../../lib/api/api";
+import apiService from "../api";
 import {HappyHourSearch} from "../../schemas/happy-hour-search-schema";
 import {CompositeBusinessDto} from "../../models/composite-business-dto";
-import useAccessToken from "../../lib/api/useAccessToken";
+import useAccessToken from "../useAccessToken";
 
 const fetchCompositeBusinesses = async (search: HappyHourSearch, token: string): Promise<CompositeBusinessDto[]> => {
     return await apiService.get<CompositeBusinessDto[]>("/yelp/businesses/search", {
