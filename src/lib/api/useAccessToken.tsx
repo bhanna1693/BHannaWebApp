@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 const useAccessToken = () => {
     const {getAccessTokenSilently} = useAuth0();
-    const [token, setToken] = useState<string>()
+    const [token, setToken] = useState<string>("")
     useEffect(() => {
         (async () => {
             try {
