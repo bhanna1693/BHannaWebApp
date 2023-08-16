@@ -60,25 +60,33 @@ jobs:
           name: production-files
           path: ./build
 
-  # Deployment job
-  deploy:
-    needs: build
-    name: Deploy site to AWS S3
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: production-files
-          path: ./build
+      - name: Deploy to GitHub Pages
+        env:
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+          REACT_APP_AUTH0_DOMAIN: ${{ secrets.REACT_APP_BASE_URL }}
+          REACT_APP_AUTH0_CLIENT_ID: ${{ secrets.REACT_APP_BASE_URL }}
+          REACT_APP_AUTH0_AUDIENCE: ${{ secrets.REACT_APP_BASE_URL }}
+        run: npm run deploy
 
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::711335785459:role/GitHubAction-AssumeRoleWithAction
-          role-session-name: GitHub_to_AWS_via_FederatedOIDC
-          aws-region: ${{ env.AWS_REGION }}
-      - name: Copy files to the production website with the AWS CLI
-        run: |
-          aws s3 sync ./build s3://bhanna-portfolio
+  # Deployment job
+#  deploy:
+#    needs: build
+#    name: Deploy site to AWS S3
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Download artifact
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: production-files
+#          path: ./build
+#
+#      - name: configure aws credentials
+#        uses: aws-actions/configure-aws-credentials@v2
+#        with:
+#          role-to-assume: arn:aws:iam::711335785459:role/GitHubAction-AssumeRoleWithAction
+#          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+#          aws-region: ${{ env.AWS_REGION }}
+#      - name: Copy files to the production website with the AWS CLI
+#        run: |
+#          aws s3 sync ./build s3://bhanna-portfolio
