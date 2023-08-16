@@ -1,4 +1,4 @@
-import {createBrowserRouter, Outlet} from "react-router-dom";
+import {createHashRouter, Outlet} from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./pages/Error";
 import {HomePage} from "./pages/Home";
@@ -11,7 +11,7 @@ import PageLayout from "./layouts/PageLayout";
 import React from "react";
 import ProfilePage from "./pages/Profile";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/",
         element: <App/>,
