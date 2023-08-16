@@ -1,18 +1,23 @@
 import {useQuery} from "@tanstack/react-query";
 import {Business, SpecialCheckStatus} from "../../models/business";
 import apiService from "../../lib/api/api";
+import useAccessToken from "../../lib/api/useAccessToken";
 
-const fetchBusinessByYelpId = async (yelpId: string, includeSpecials: boolean): Promise<Business> => {
-    return await apiService.get<Business>(`/business/${yelpId}`, {queryParams: {includeSpecials}});
+const fetchBusinessByYelpId = async (yelpId: string, includeSpecials: boolean, token: string): Promise<Business> => {
+    return await apiService.get<Business>(`/business/${yelpId}`, {
+        queryParams: {includeSpecials}, accessToken: token
+    });
 }
 
 const useGetBusinessByYelpIdQuery = (yelpId: string, includeSpecials: boolean, enabled: boolean) => {
+    const {token} = useAccessToken()
+
     const queryKey: string[] = ['business', yelpId]
     return useQuery({
         queryKey: queryKey,
-        queryFn: () => fetchBusinessByYelpId(yelpId, includeSpecials),
+        queryFn: () => fetchBusinessByYelpId(yelpId, includeSpecials, token),
         enabled: enabled,
-        refetchInterval: (data, query) => {
+        refetchInterval: (data) => {
             return data?.specialCheckStatus !== SpecialCheckStatus.PENDING ? false : 5000
         }
     })

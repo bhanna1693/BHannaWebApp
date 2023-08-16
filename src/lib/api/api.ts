@@ -1,5 +1,4 @@
-import Cookies from "js-cookie";
-import { environment } from "../../environment";
+import {environment} from "../../environment";
 
 class HttpError extends Error {
     status: number;
@@ -14,15 +13,19 @@ class HttpError extends Error {
 }
 
 interface RequestOptions {
+    accessToken: string | null;
     queryParams?: { [k: string]: any };
     headers?: { [k: string]: string };
 }
 
-async function get<T = any>(url: string, options: RequestOptions = {}): Promise<T> {
-    const token = Cookies.get(environment.MY_COOKIE);
+const defaultRequestOptions: () => RequestOptions = () => {
+    return {accessToken: null}
+};
+
+async function get<T = any>(url: string, options: RequestOptions = defaultRequestOptions()): Promise<T> {
     const headers: { [k: string]: string } = {
         'Content-Type': 'application/json',
-        ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...(options.accessToken && {'Authorization': `Bearer ${options.accessToken}`}),
         ...(options.headers || {}),
     };
 
@@ -45,11 +48,10 @@ async function get<T = any>(url: string, options: RequestOptions = {}): Promise<
     return response.json();
 }
 
-async function post<T = any, R = any>(url: string, body: T, options: RequestOptions = {}): Promise<R> {
-    const token = Cookies.get(environment.MY_COOKIE);
+async function post<T = any, R = any>(url: string, body: T, options: RequestOptions = defaultRequestOptions()): Promise<R> {
     const headers: { [k: string]: string } = {
         'Content-Type': 'application/json',
-        ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...(options.accessToken && {'Authorization': `Bearer ${options.accessToken}`}),
         ...(options.headers || {}),
     };
 

@@ -3,16 +3,20 @@ import {Business} from "../../models/business";
 import apiService from "../../lib/api/api";
 import {CompositeBusinessDto} from "../../models/composite-business-dto";
 import {UpdateBusinessRequest} from "../../schemas/update-business-request-schema";
+import useAccessToken from "../../lib/api/useAccessToken";
 
-const updateBusiness = async (req: UpdateBusinessRequest): Promise<Business> => {
-    return await apiService.post<UpdateBusinessRequest, Business>(`/business/${req.businessId}`, req);
+const updateBusiness = async (req: UpdateBusinessRequest, token: string): Promise<Business> => {
+    return await apiService.post<UpdateBusinessRequest, Business>(`/business/${req.businessId}`, req, {
+        accessToken: token
+    });
 }
 
 const useUpdateBusiness = () => {
     const client = useQueryClient()
+    const {token} = useAccessToken()
 
     return useMutation({
-        mutationFn: (req: UpdateBusinessRequest) => updateBusiness(req),
+        mutationFn: (req: UpdateBusinessRequest) => updateBusiness(req, token),
         onSuccess: (result) => {
             updateBusinessQueryCache(client, result)
             updateBusinessesQueryCache(client, result)

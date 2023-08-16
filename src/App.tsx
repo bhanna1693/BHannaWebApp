@@ -15,6 +15,7 @@ function App() {
             domain={environment.AUTH0_DOMAIN}
             clientId={environment.AUTH0_CLIENT_ID}
             authorizationParams={{
+                audience: environment.AUTH0_AUDIENCE,
                 redirect_uri: window.location.origin
             }}>
             <GlobalStateProvider>
