@@ -2,7 +2,7 @@ import {ArrowTopRightOnSquareIcon} from "@heroicons/react/24/outline";
 
 export const HomePage = () => {
     return (
-        <section className="container mx-auto">
+        <section className="">
             <div className="text-center">
                 <h1>Welcome to my website!</h1>
 

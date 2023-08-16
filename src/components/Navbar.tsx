@@ -4,6 +4,7 @@ import {Bars3Icon} from "@heroicons/react/24/solid";
 import {Link} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
 import {FunctionComponent} from "react";
+import {UserCircleIcon} from "@heroicons/react/24/outline";
 
 const navigation = [
     {name: 'About', href: '/about', current: true},
@@ -21,26 +22,31 @@ const LoginButton: FunctionComponent = () => {
     </button>
 };
 
-const LogoutButton: FunctionComponent = () => {
-    const {logout} = useAuth0();
-
-    return <button className="btn btn-ghost"
-                   onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}>
-        Log Out
-    </button>
-};
-
 const getRightNav = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const {user, isAuthenticated} = useAuth0();
+    const {user, isAuthenticated, logout} = useAuth0();
 
     if (isAuthenticated) {
-        return <>
-            <span className="pr-4">
-                Hello {user?.name}
-            </span>
-            <LogoutButton/>
-        </>;
+        return <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                    {user?.picture ? (
+                        <img src={user?.picture} alt={"user"}/>
+                    ) : <UserCircleIcon className={"h-10 w-10"}/>}
+                </div>
+            </label>
+            <ul tabIndex={0}
+                className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-300 rounded-box w-52">
+                <li>
+                    <Link to={"/profile"} className="justify-between">
+                        Profile
+                        <span className="badge">New</span>
+                    </Link>
+                </li>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <li><a onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}>Log Out</a></li>
+            </ul>
+        </div>
     }
     return <LoginButton/>;
 }

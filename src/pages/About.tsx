@@ -1,6 +1,6 @@
 export const AboutPage = () => {
     return (
-        <section className="container mx-auto">
+        <section className="">
             <h1>Ready to work. Please hire me :)</h1>
         </section>
     )

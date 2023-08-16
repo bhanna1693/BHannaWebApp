@@ -1,6 +1,6 @@
 export const PokemonPage = () => {
     return (
-        <section className="container mx-auto">
+        <section className="">
             <h1>My Pokemon Page (under construction)</h1>
         </section>
     )

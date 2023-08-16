@@ -9,6 +9,7 @@ import {HappyHourDetailsPage} from "./pages/happyhour/[yelpId]/[yelpName]";
 import {PokemonPage} from "./pages/Pokemon";
 import PageLayout from "./layouts/PageLayout";
 import React from "react";
+import ProfilePage from "./pages/Profile";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: "about",
                 element: <PageLayout children={<AboutPage/>}/>,
+            },
+            {
+                path: "profile",
+                element: <ProtectedRoute component={() => <PageLayout children={<ProfilePage/>}/>}/>
             },
             {
                 path: "happyhour",
