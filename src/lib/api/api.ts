@@ -13,13 +13,13 @@ class HttpError extends Error {
 }
 
 interface RequestOptions {
-    accessToken: string | null;
+    accessToken: string;
     queryParams?: { [k: string]: any };
     headers?: { [k: string]: string };
 }
 
 const defaultRequestOptions: () => RequestOptions = () => {
-    return {accessToken: null}
+    return {accessToken: ""}
 };
 
 async function get<T = any>(url: string, options: RequestOptions = defaultRequestOptions()): Promise<T> {
