@@ -2,7 +2,8 @@
 
 import {Bars3Icon} from "@heroicons/react/24/solid";
 import {Link} from "react-router-dom";
-import {globalActions, useGlobalState} from "../context/GlobalStateContext";
+import {useAuth0} from "@auth0/auth0-react";
+import {FunctionComponent} from "react";
 
 const navigation = [
     {name: 'About', href: '/about', current: true},
@@ -10,33 +11,38 @@ const navigation = [
     {name: 'Pokemon', href: '/pokemon', current: false},
 ]
 
+
+const LoginButton: FunctionComponent = () => {
+    const {loginWithRedirect} = useAuth0();
+
+    return <button className="btn btn-ghost"
+                   onClick={() => loginWithRedirect()}>
+        Log In
+    </button>
+};
+
+const LogoutButton: FunctionComponent = () => {
+    const {logout} = useAuth0();
+
+    return <button className="btn btn-ghost"
+                   onClick={() => logout({logoutParams: {returnTo: window.location.origin}})}>
+        Log Out
+    </button>
+};
+
 const getRightNav = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { state, dispatch } = useGlobalState();
+    const {user, isAuthenticated} = useAuth0();
 
-    const signOut = () => {
-        // sign out user
-        dispatch(globalActions.removeUser())
-    }
-
-    if (state.user) {
+    if (isAuthenticated) {
         return <>
-            <span>
-                Hello {state.user?.name}
+            <span className="pr-4">
+                Hello {user?.name}
             </span>
-            <button className="btn btn-ghost" onClick={() => signOut()}>
-                Logout
-            </button>
+            <LogoutButton/>
         </>;
     }
-    return <>
-        <Link className="btn btn-ghost" to={'/auth/signin'}>
-             Login
-        </Link>
-        <Link className="btn btn-ghost" to={'/auth/signup'}>
-            Register
-        </Link>
-    </>;
+    return <LoginButton/>;
 }
 
 export default function Navbar() {

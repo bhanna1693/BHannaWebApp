@@ -3,12 +3,10 @@ import App from "./App";
 import ErrorPage from "./pages/Error";
 import {HomePage} from "./pages/Home";
 import {AboutPage} from "./pages/About";
-import PrivateRoute from "./components/PrivateRoute";
+import ProtectedRoute from "./components/PrivateRoute";
 import {HappyHourSearchPage} from "./pages/happyhour/HappyHourSearch";
 import {HappyHourDetailsPage} from "./pages/happyhour/[yelpId]/[yelpName]";
 import {PokemonPage} from "./pages/Pokemon";
-import {SignInPage} from "./pages/auth/SignIn";
-import {SignUpPage} from "./pages/auth/SignUp";
 import PageLayout from "./layouts/PageLayout";
 import React from "react";
 
@@ -20,16 +18,16 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <PageLayout children={<HomePage/>} />,
+                element: <PageLayout children={<HomePage/>}/>,
                 hasErrorBoundary: true
             },
             {
                 path: "about",
-                element: <PageLayout children={<AboutPage/>} />,
+                element: <PageLayout children={<AboutPage/>}/>,
             },
             {
                 path: "happyhour",
-                element: <PrivateRoute children={<PageLayout children={<Outlet/>}/>}/>,
+                element: <ProtectedRoute component={() => <PageLayout children={<Outlet/>}/>}/>,
                 children: [
                     {
                         path: "",
@@ -43,20 +41,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "pokemon",
-                element: <PrivateRoute children={<PageLayout children={<PokemonPage/>} />}/>
-            },
-            {
-                path: "auth",
-                children: [
-                    {
-                        path: "signin",
-                        element: <PageLayout children={<SignInPage/>}/>
-                    },
-                    {
-                        path: "signup",
-                        element: <PageLayout children={<SignUpPage/>}/>
-                    },
-                ]
+                element: <ProtectedRoute component={() => <PageLayout children={<PokemonPage/>}/>}/>
             }
         ]
     },
