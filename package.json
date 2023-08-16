@@ -17,7 +17,6 @@
     "@types/react-dom": "^18.2.7",
     "date-fns": "^2.30.0",
     "formik": "^2.4.3",
-    "gh-pages": "^6.0.0",
     "jose": "^4.14.4",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
@@ -32,7 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "gh-pages -b main -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -59,6 +58,7 @@
     "@tanstack/eslint-plugin-query": "^4.32.5",
     "@types/js-cookie": "^3.0.3",
     "daisyui": "^3.5.1",
+    "gh-pages": "^6.0.0",
     "tailwindcss": "^3.3.3"
   }
 }
