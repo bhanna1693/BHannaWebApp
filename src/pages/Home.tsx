@@ -30,23 +30,34 @@ export const HomePage = () => {
                 <div>
                     <h3 className="tooltip" data-tip="Go to Backend Github repository">
                         <a className="flex items-center" href="https://github.com/bhanna1693/happyhour" target="_blank" rel="noreferrer">
-                            Back End:
+                            Happy Hour Back End:
                             <ArrowTopRightOnSquareIcon className={"h-5 w-5 ml-4"} />
                         </a>
                     </h3>
                     <ul>
-                        <li>Happy Hour: Spring Boot & Java running on AWS Fargate via App Runner</li>
-                        <li>Happy Hour: Python background process running on AWS Lambda</li>
-                        <li>Happy Hour: Postgres database running on AWS RDS</li>
+                        <li>Spring Boot & Java app running on AWS Fargate via App Runner</li>
+                        <li>Python background process running on AWS Lambda</li>
+                        <li>Postgres database running on AWS RDS</li>
                     </ul>
                 </div>
 
                 <div>
                     <h3>CI/CD:</h3>
                     <ul>
-                        <li>GitHub repository</li>
+                        <li>GitHub source control</li>
                         <li>GitHub Workflows for both Front & Back End</li>
                         <li>Docker containerization</li>
+                        <li>Front End app deployed on GitHub for free :)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Authentication:</h3>
+                    <ul>
+                        <li>Using OAuth 2.0 Authorization Framework</li>
+                        <li>Client: Front End app</li>
+                        <li>Resource Server: All Back End apps</li>
+                        <li>Authorization Server: Auth0</li>
                     </ul>
                 </div>
             </div>
