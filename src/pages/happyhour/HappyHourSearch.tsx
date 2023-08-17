@@ -19,7 +19,7 @@ export const HappyHourSearchPage = () => {
         })
     }, [searchParams])
 
-    const {data} = useGetCompositeBusinessesQuery(formState, happyHourSearchSchema.isValidSync(formState))
+    const {data, isLoading} = useGetCompositeBusinessesQuery(formState, happyHourSearchSchema.isValidSync(formState))
 
     const handleSubmit = (values: HappyHourSearch) => {
         // Handle form submission
@@ -35,32 +35,28 @@ export const HappyHourSearchPage = () => {
                         validationSchema={happyHourSearchSchema}
                         onSubmit={handleSubmit}>
                     <Form>
-                        <div className="join">
-                            <div>
-                                <div>
-                                    <Field id={"location"} name={"location"} type={"text"}
-                                           className="input input-bordered join-item"
-                                           placeholder="City, State"/>
-                                </div>
-                                <ErrorMessage name="location"/>
-                            </div>
-                            <div>
-                                <div>
-                                    <Field id={"search"} name={"search"} type={"text"}
-                                           className="input input-bordered join-item"
-                                           placeholder="Business name"/>
-                                </div>
-                                <ErrorMessage name={"search"}/>
-                            </div>
-                            {/*<select className="select select-bordered join-item">*/}
-                            {/*    <option disabled selected>Filter</option>*/}
-                            {/*    <option>Sci-fi</option>*/}
-                            {/*    <option>Drama</option>*/}
-                            {/*    <option>Action</option>*/}
-                            {/*</select>*/}
-                            <div>
-                                <button className="btn btn-primary join-item" type={"submit"}>Search</button>
-                            </div>
+                        <div className="join join-vertical lg:join-horizontal">
+                            <Field id={"location"} name={"location"} type={"text"}
+                                   className="input input-bordered join-item"
+                                   placeholder="City, State"/>
+
+                            <Field id={"search"} name={"search"} type={"text"}
+                                   className="input input-bordered join-item"
+                                   placeholder="Business name"/>
+                            <button className="btn btn-primary join-item"
+                                    type={"submit"} disabled={isLoading}>
+                                Search
+
+                                {isLoading && (
+                                    <span className="loading loading-bars loading-xs"></span>
+                                )}
+                            </button>
+                        </div>
+                        <div>
+                            <ErrorMessage name="location"/>
+                        </div>
+                        <div>
+                            <ErrorMessage name={"search"}/>
                         </div>
                     </Form>
                 </Formik>

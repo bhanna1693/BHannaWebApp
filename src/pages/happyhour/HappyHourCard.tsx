@@ -4,9 +4,9 @@ import HappyHourCardActions from "./HappyHourCardActions";
 
 const HappyHourCard: FunctionComponent<{ b: CompositeBusinessDto }> = ({b}) => {
 
-    return <div className="card card-side bg-base-200 shadow-xl my-8">
-        <figure className={"pl-8"}><img className={"max-h-60"} src={b.yelpBusiness.image_url}
-                                        alt="business_img"/></figure>
+    return <div className="card lg:card-side bg-base-200 shadow-xl my-8">
+        <figure><img className={"max-w-md lg:max-w-full"} src={b.yelpBusiness.image_url}
+                     alt="business_img"/></figure>
         <div className="card-body">
             <h2 className="card-title">{b.yelpBusiness.name}</h2>
             <p>
@@ -19,7 +19,7 @@ const HappyHourCard: FunctionComponent<{ b: CompositeBusinessDto }> = ({b}) => {
                 {b.yelpBusiness.location.display_address.join(", ")}
             </p>
             <div className="card-actions justify-end">
-                <HappyHourCardActions b={b} />
+                <HappyHourCardActions b={b}/>
             </div>
         </div>
     </div>

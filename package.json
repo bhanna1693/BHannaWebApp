@@ -33,7 +33,10 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "copy-cmaps": "node --loader ts-node/esm ./scripts/copy-cmaps.ts",
+    "copy-standard-fonts": "node --loader ts-node/esm ./scripts/copy-standard-fonts.ts",
+    "copy-worker": "node --loader ts-node/esm ./scripts/copy-worker.ts"
   },
   "eslintConfig": {
     "extends": [

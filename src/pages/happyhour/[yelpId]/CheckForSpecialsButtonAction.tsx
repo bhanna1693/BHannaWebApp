@@ -52,7 +52,7 @@ export const CheckForSpecialsButtonAction: React.FunctionComponent<CheckForSpeci
                             <button type="submit" className={"btn btn-primary"}
                                     disabled={!isValid(props.values) || isLoading}>
                                 Click to check for specials
-                                {isLoading ?? (
+                                {isLoading && (
                                     <span className="loading loading-bars loading-xs"></span>
                                 )}
                             </button>
