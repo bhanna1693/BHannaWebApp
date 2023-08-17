@@ -11,6 +11,7 @@ export const HappyHourSearchPage = () => {
         search: searchParams.get("search") || "",
         location: searchParams.get("location") || ""
     })
+    const [isFormValid, setIsFormValid] = useState(happyHourSearchSchema.isValidSync(formState))
 
     useEffect(() => {
         setFormState({
@@ -19,7 +20,11 @@ export const HappyHourSearchPage = () => {
         })
     }, [searchParams])
 
-    const {data, isLoading} = useGetCompositeBusinessesQuery(formState, happyHourSearchSchema.isValidSync(formState))
+    useEffect(() => {
+        setIsFormValid(happyHourSearchSchema.isValidSync(formState))
+    }, [formState]);
+
+    const {data, isLoading} = useGetCompositeBusinessesQuery(formState, isFormValid)
 
     const handleSubmit = (values: HappyHourSearch) => {
         // Handle form submission
@@ -44,10 +49,11 @@ export const HappyHourSearchPage = () => {
                                    className="input input-bordered join-item"
                                    placeholder="Business name"/>
                             <button className="btn btn-primary join-item"
-                                    type={"submit"} disabled={isLoading}>
+                                    type={"submit"}
+                                    disabled={isFormValid && isLoading}>
                                 Search
 
-                                {isLoading && (
+                                {isFormValid && isLoading && (
                                     <span className="loading loading-bars loading-xs"></span>
                                 )}
                             </button>
